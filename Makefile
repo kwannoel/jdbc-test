@@ -37,6 +37,9 @@ test:
 test-batch:
 	mvn exec:java -Dexec.mainClass="com.example.JdbcBatchTest"
 
+test-batch-no-conflict:
+	mvn exec:java -Dexec.mainClass="com.example.JdbcBatchTestNoConflict"
+
 test-shell:
 	./test.sh
 
