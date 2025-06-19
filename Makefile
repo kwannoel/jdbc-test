@@ -43,6 +43,9 @@ test-batch-no-conflict:
 test-batch-ingest:
 	mvn exec:java -Dexec.mainClass="com.example.JdbcTestBatchIngest"
 
+test-batch-ingest-prepared:
+	mvn exec:java -Dexec.mainClass="com.example.JdbcTestBatchIngestPrepared"
+
 test-shell:
 	./test.sh
 
@@ -58,6 +61,9 @@ disable-logging:
 
 logs:
 	docker logs jdbc-test-postgres -f
+
+logs-simple:
+	docker logs jdbc-test-postgres 2>&1 | rg -o "(DETAIL|LOG):.*"
 
 # Utility targets
 clean: stop
