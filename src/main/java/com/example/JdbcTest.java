@@ -25,7 +25,7 @@ public class JdbcTest {
             resultSet.close();
 
             String createTableSQL = "CREATE TABLE IF NOT EXISTS users (" +
-                "id SERIAL PRIMARY KEY, " +
+                "id INTEGER PRIMARY KEY, " +
                 "username VARCHAR(50) UNIQUE NOT NULL, " +
                 "email VARCHAR(100) NOT NULL, " +
                 "last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
@@ -34,23 +34,25 @@ public class JdbcTest {
             statement.execute(createTableSQL);
             System.out.println("Table 'users' created successfully!");
 
-            String upsertSQL = "INSERT INTO users (username, email) VALUES (?, ?) " +
-                "ON CONFLICT (username) DO UPDATE SET " +
-                "email = EXCLUDED.email, last_updated = CURRENT_TIMESTAMP";
+            String upsertSQL = "INSERT INTO users (id, username, email) VALUES (?, ?, ?) " +
+                "ON CONFLICT (id) DO UPDATE SET " +
+                "username = EXCLUDED.username, email = EXCLUDED.email, last_updated = CURRENT_TIMESTAMP";
 
             PreparedStatement preparedStatement = connection.prepareStatement(upsertSQL);
 
             String[][] testData = {
-                {"john_doe", "john@example.com"},
-                {"jane_smith", "jane@example.com"},
-                {"john_doe", "john.doe@updated.com"}
+                {"1", "john_doe", "john@example.com"},
+                {"2", "jane_smith", "jane@example.com"},
+                {"1", "john_doe", "john.doe@updated.com"},
+                {"1", "john_doe", "john.doe@updated2.com"},
             };
 
             for (String[] userData : testData) {
-                preparedStatement.setString(1, userData[0]);
+                preparedStatement.setInt(1, Integer.parseInt(userData[0]));
                 preparedStatement.setString(2, userData[1]);
+                preparedStatement.setString(3, userData[2]);
                 int rowsAffected = preparedStatement.executeUpdate();
-                System.out.println("Upserted user: " + userData[0] + " (" + rowsAffected + " row affected)");
+                System.out.println("Upserted user ID " + userData[0] + ": " + userData[1] + " (" + rowsAffected + " row affected)");
             }
 
             ResultSet queryResult = statement.executeQuery("SELECT * FROM users ORDER BY id");
