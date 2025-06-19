@@ -15,7 +15,7 @@ docker-compose up -d
 
 ### Stop PostgreSQL Database
 ```bash
-docker-compose down
+docker-compose down -v
 ```
 
 ### Build Project

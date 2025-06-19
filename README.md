@@ -43,7 +43,7 @@ Simple JDBC test that connects to PostgreSQL and demonstrates table creation, up
 
 6. **Stop PostgreSQL**
    ```bash
-   docker-compose down
+   docker-compose down -v
    ```
 
 ## Requirements
