@@ -11,8 +11,10 @@ Simple JDBC test that connects to PostgreSQL and demonstrates table creation, up
 
 2. **Run the test**
    ```bash
+   ./enable_logging.sh
    mvn compile
    mvn exec:java -Dexec.mainClass="com.example.JdbcTest"
+   ./disable_logging.sh
    ```
 
    **Or run the shell script version:**
