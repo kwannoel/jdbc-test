@@ -4,47 +4,19 @@ Simple JDBC test that connects to PostgreSQL and demonstrates table creation, up
 
 ## Quick Start
 
-1. **Start PostgreSQL**
-   ```bash
-   docker-compose up -d
-   ```
-
-2. **Enable logging**
-   ```bash
-   ./enable_logging.sh
-   ```
-
-3. **Compile**
-   ```bash
-   mvn compile
-   ```
-
-4. **Run the test**
-
-   Basic java version, uses PreparedStatement.executeUpdate()
-   ```bash
-   mvn exec:java -Dexec.mainClass="com.example.JdbcTest"
-   ```
-
-   Batch version, uses addBatch/executeBatch
-   ```bash
-   mvn exec:java -Dexec.mainClass="com.example.JdbcBatchTest"
-   ```
-
-   Shell script version, uses addBatch/executeBatch
-   ```bash
-   ./test.sh
-   ```
-
-5. **Disable logging**
-   ```bash
-   ./disable_logging.sh
-   ```
-
-6. **Stop PostgreSQL**
-   ```bash
-   docker-compose down -v
-   ```
+```bash
+make help                    # Show all available commands
+make start                   # Start PostgreSQL
+make enable-logging          # Enable logging
+make compile                 # Compile
+make test                    # Run basic test
+make test-batch              # Run batch test
+make test-shell              # Run shell script test
+make test-batch-shell        # Run batch shell script test
+make test-with-logging       # Run basic test with full workflow
+make test-batch-with-logging # Run batch test with full workflow  
+make all                     # Run complete test suite
+```
 
 ## Requirements
 

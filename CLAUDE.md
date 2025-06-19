@@ -10,22 +10,22 @@ A simple JDBC testing project that connects to a PostgreSQL database running in 
 
 ### Start PostgreSQL Database
 ```bash
-docker-compose up -d
+make start
 ```
 
 ### Stop PostgreSQL Database
 ```bash
-docker-compose down -v
+make stop
 ```
 
 ### Build Project
 ```bash
-mvn compile
+make compile
 ```
 
 ### Run JDBC Test
 ```bash
-mvn exec:java -Dexec.mainClass="com.example.JdbcTest"
+make test
 ```
 
 ## Architecture
