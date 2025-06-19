@@ -15,6 +15,11 @@ Simple JDBC test that connects to PostgreSQL and demonstrates table creation, up
    mvn exec:java -Dexec.mainClass="com.example.JdbcTest"
    ```
 
+   **Or run the shell script version:**
+   ```bash
+   ./test.sh
+   ```
+
 3. **Stop PostgreSQL**
    ```bash
    docker-compose down
@@ -25,3 +30,4 @@ Simple JDBC test that connects to PostgreSQL and demonstrates table creation, up
 - Docker
 - Maven
 - Java 11+
+- PostgreSQL client (`psql`) for shell script
