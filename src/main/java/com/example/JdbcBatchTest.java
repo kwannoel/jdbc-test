@@ -57,7 +57,8 @@ public class JdbcBatchTest {
             }
 
             System.out.println("\nExecuting batch...");
-            preparedStatement.execute();
+            preparedStatement.executeBatch();
+            preparedStatement.clearParameters();
             System.out.println("Batch execution completed!");
 
             ResultSet queryResult = statement.executeQuery("SELECT * FROM users ORDER BY id");
